@@ -103,7 +103,6 @@ const ProductCategoryPage = ({ products, findList, models, onFind }) => {
                             getProductInPage(page, pageSize);
                         }}
                     >
-
                     </Pagination>
                 </Row>
             </Content>

@@ -17,7 +17,9 @@ import { addUser } from './api/userAPI';
 import { message, Popconfirm } from 'antd';
 import SingInPage from './pages/website/SignIn';
 import PrivateAdmin from './components/PrivateAdmin';
-
+import EditProduct from './pages/admin/EditProduct';
+import DashBoardPage from './pages/admin/DashBoard';
+  
 function App() {
 
 
@@ -72,8 +74,11 @@ function App() {
                </PrivateAdmin>
             }>
             <Route index element={<Navigate to="products" />} />
+            <Route path="dashboard" element={<DashBoardPage />} />
             <Route path="products" element={<ProductsManager products={products} onRemove={onHandleRemove} models={models} />} />
             <Route path="products/add" element={<AddProduct createProduct={onCreateProduct} models={models}/>} />
+            <Route path="products/:id/edit" element={<EditProduct models={models}/>} />
+          
           </Route>
         </Routes>
       </BrowserRouter>
