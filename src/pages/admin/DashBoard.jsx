@@ -1,5 +1,5 @@
 import {Col, Row} from 'antd';
-import {AreaChartOutlined} from '@ant-design/icons';
+import {AppleOutlined} from '@ant-design/icons';
 const DashBoardPage = () =>{
     return (
         <Row gutter={[30,30]}>
@@ -9,8 +9,8 @@ const DashBoardPage = () =>{
                     backgroundColor:'rgba(50, 94, 123, .4)',
                     backgroundClip:'content-box'
                 }}>
-                    <AreaChartOutlined />
-                    DashBoard
+                    <AppleOutlined />
+                    Product
             </Col>
             <Col span={8}
             style={{

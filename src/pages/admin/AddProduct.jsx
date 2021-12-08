@@ -1,4 +1,4 @@
-import { Col, Input, Form, Radio, Select, Button, Row } from 'antd';
+import { Col, Input, InputNumber, Form, Radio, Select, Button, Row } from 'antd';
 import {useNavigate} from 'react-router-dom';
 
 const AddProduct = (props) => {
@@ -33,12 +33,11 @@ const AddProduct = (props) => {
                         label="Price"
                         name="price"
                         rules={[
-                            { required: true, message: 'Please input product price!' },
-                            { min: 0, message: "Gia phai la so duong" }
+                            { required: true, message: 'Please input product price!' }
 
                         ]}
                     >
-                        <Input placeholder="Enter price of product" />
+                        <InputNumber placeholder="Enter price of product" />
                     </Form.Item>
                     <Form.Item label="Popukar" name="popular">
                         <Radio.Group>

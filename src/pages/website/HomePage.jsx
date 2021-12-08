@@ -1,42 +1,77 @@
-import { Card, Carousel, Col, Row } from 'antd';
-
+import { Card, Col,Input, Pagination, Row } from 'antd';
+import { useEffect, useState } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 const HomePage = (props) => {
-    const imgs =[
-        'https://tieudung.vn/upload_images/images/2021/11/04/apple.jpg',
-        'https://images.macrumors.com/t/V3mjve60VWoEhjek6dFX19CuyQQ=/1600x/article-new/2021/09/apple-event-september-14.jpg'
-    ];
-    const contentStyle = {
-        height: '160px',
-        color: '#fff',
-        lineHeight: '160px',
-        textAlign: 'center',
-        background: '#364d79',
-    };
+    const { page } = useParams();
+
+    const navigate = useNavigate();
+    const onSearch = (value) =>{
+        navigate('/search/'+value);
+    }
+
+    if (!page) {
+        props.changePage(1);
+    }
+    useEffect(() => {
+        props.changePage(page);
+    }, [page])
+
 
     return (
-                <Carousel>
-                    {imgs.map((item, index) =>{
+        <Row gutter={[30, 30]}>
+            <Col span={20}>
+                <Row gutter={[20, 20]}>
+                    {props.products.map((item, index) => {
                         return (
-                            <div className="" key={index} style={{contentStyle
+                            <Col span={6} key={index} style={{
                             }}>
-                                <img src={item} alt="" />
-                            </div>
+                                <Link to={`/products/${item.id}`}>
+                                    <Card title={item.name} hoverable style={{ boxShadow: '-3px 2px 10px hsla(120, 100%, 25%, 0.25)' }}>
+                                        <Row>
+                                            <img src={item.img} alt={item.name} style={{
+                                                width: '100%',
+                                                minHeight: '320px'
+                                            }} />
+                                        </Row>
+                                        <Row>
+                                            <Col span={8}>
+                                                So luong: {item?.quantity}
+                                            </Col>
+                                            <Col span={16}>
+                                                {item.price}
+                                            </Col>
+                                        </Row>
+                                    </Card>
+                                </Link>
+                            </Col>
+
                         )
                     })}
+                </Row>
+                <Row>
+                    <Pagination
+                        pageSize={props.pageSize}
+                        total={props.length}
+                        current={props.page}
+                        size="default"
+                        onChange={ (page, pageSize) => {
+                            navigate("/page/"+page);
+                        }}
+                    >
 
-                    {/* <div>
-                        <h3 style={contentStyle}>1</h3>
-                    </div>
-                    <div>
-                        <h3 style={contentStyle}>2</h3>
-                    </div>
-                    <div>
-                        <h3 style={contentStyle}>3</h3>
-                    </div>
-                    <div>
-                        <h3 style={contentStyle}>4</h3>
-                    </div> */}
-                </Carousel>
+                    </Pagination>
+                </Row>
+            </Col>
+            <Col span={4}>
+                <Input.Search
+                    allowClear
+                    placeholder="Input search here!"
+                    onSearch={onSearch}
+                >
+                
+                </Input.Search>
+            </Col>
+        </Row>
     )
 };
 
