@@ -13,9 +13,9 @@ const SearchProduct = (props) => {
             }
         });
         setSearchList(list);
-    },[props.products])
+    },[value])
     return (
-        <Row>
+        <Row gutter={[30,30]}>
             {searchList.length === 0 ? (
                 <div>No Data Found</div>
             ) : (

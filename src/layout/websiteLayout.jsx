@@ -1,13 +1,29 @@
-import { Layout, Menu } from 'antd';
-import { Link, Outlet } from 'react-router-dom';
+import { Input, Layout, Menu, Row } from 'antd';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import AppHeader from '../components/AppHeader';
 const LayoutWebsite = () => {
+    const navigate = useNavigate();
+    const onSearch = (value) => {
+        navigate('/search/' + value);
+    }
+
     return (
         <>
             <AppHeader />
-            <Layout style={{padding: '126px'}}>
+            <Layout style={{ padding: '126px' }}>
                 <Layout.Content style={{ padding: '0 50px 100px 50px', width: '100%' }}>
-                    <Outlet />
+                    <Row>
+                        <Input.Search
+                            allowClear
+                            placeholder="Input search here!"
+                            onSearch={onSearch}
+                        >
+
+                        </Input.Search>
+                    </Row>
+                    <Row>
+                        <Outlet />
+                    </Row>
                 </Layout.Content>
                 <Layout.Footer
                     style={{

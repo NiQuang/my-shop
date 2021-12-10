@@ -63,13 +63,13 @@ const HomePage = (props) => {
                 </Row>
             </Col>
             <Col span={4}>
-                <Input.Search
+                {/* <Input.Search
                     allowClear
                     placeholder="Input search here!"
                     onSearch={onSearch}
                 >
                 
-                </Input.Search>
+                </Input.Search> */}
             </Col>
         </Row>
     )
